@@ -115,21 +115,30 @@ export default function App() {
 
   if (!isStarted) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center font-sans overflow-hidden cursor-pointer" onClick={startExperience}>
+      <div className="min-h-screen bg-black flex items-center justify-center font-sans overflow-hidden relative">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2000')] bg-cover bg-center opacity-20 blur-sm pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-red-950/40 to-black/80 pointer-events-none" />
+        
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center z-10"
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          className="z-10 bg-zinc-900/80 backdrop-blur-xl border border-white/10 p-8 rounded-3xl max-w-sm w-full mx-4 shadow-2xl text-center flex flex-col items-center"
         >
-          <h1 className="text-white text-5xl md:text-7xl font-bold tracking-tighter mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">THE HILLS</h1>
+          <div className="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mb-6">
+            <Volume2 className="text-red-500 w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Audio Permission Required</h2>
+          <p className="text-zinc-400 text-sm mb-8 leading-relaxed">
+            This experience synchronizes lyrics directly with the music. Please allow audio playback to begin.
+          </p>
           <button 
-            className="px-10 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all duration-300 rounded-full"
+            className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all duration-300 rounded-xl flex items-center justify-center gap-2"
             onClick={startExperience}
           >
-            Start Experience
+            <Play fill="currentColor" size={16} />
+            Allow Playback
           </button>
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-red-950/20 to-black pointer-events-none" />
       </div>
     );
   }
