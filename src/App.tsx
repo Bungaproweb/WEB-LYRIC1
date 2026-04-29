@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ChangeEvent } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, Pause, RefreshCw, Volume2, Music2, Settings2, Plus, Minus } from 'lucide-react';
 
@@ -43,11 +43,13 @@ export default function App() {
   const startExperience = () => {
     setIsStarted(true);
     if (audioRef.current) {
+      audioRef.current.currentTime = 148; // 2:28
       audioRef.current.play().then(() => {
         setIsPlaying(true);
+        setError(null);
       }).catch(e => {
         console.error("Start error:", e);
-        setError("Browser blocked playback. Please click Play.");
+        setError("Browser blocked playback. Please press Play manually.");
       });
     }
   };
@@ -59,6 +61,9 @@ export default function App() {
         audioRef.current.pause();
       } else {
         setError(null);
+        if (audioRef.current.currentTime < 148 || audioRef.current.currentTime >= 197) {
+          audioRef.current.currentTime = 148;
+        }
         audioRef.current.play().catch(e => {
           console.error("Play error:", e);
           setError("Your browser blocked playback.");
@@ -70,17 +75,9 @@ export default function App() {
 
   const reset = () => {
     if (audioRef.current) {
-      if (LYRICS.length > 0) {
-        audioRef.current.currentTime = LYRICS[0].start;
-        setCurrentTime(LYRICS[0].start);
-      } else {
-        audioRef.current.currentTime = 0;
-        setCurrentTime(0);
-      }
-      if (!isPlaying) {
-        audioRef.current.play();
-        setIsPlaying(true);
-      }
+      audioRef.current.currentTime = 148;
+      setCurrentTime(148);
+      if (!isPlaying) togglePlay();
     }
   };
 
@@ -99,7 +96,16 @@ export default function App() {
     if (!audio) return;
 
     const updateTime = () => {
-      const time = audio.currentTime;
+      let time = audio.currentTime;
+
+      // Ensure boundaries (End at 3:17 = 197 seconds)
+      if (time >= 197) {
+        audio.pause();
+        audio.currentTime = 148;
+        setIsPlaying(false);
+        time = 148;
+      }
+
       setCurrentTime(time);
 
       const adjustedTime = time + lyricOffset;
@@ -116,8 +122,7 @@ export default function App() {
   if (!isStarted) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center font-sans overflow-hidden relative">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2000')] bg-cover bg-center opacity-20 blur-sm pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-red-950/40 to-black/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-red-950/20 blur-xl pointer-events-none" />
         
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -127,16 +132,16 @@ export default function App() {
           <div className="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center mb-6">
             <Volume2 className="text-red-500 w-8 h-8" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Audio Permission Required</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Ready to Play</h2>
           <p className="text-zinc-400 text-sm mb-8 leading-relaxed">
-            This experience synchronizes lyrics directly with the music. Please allow audio playback to begin.
+            The music has been set to play from 2:28 to 3:17.
           </p>
           <button 
             className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all duration-300 rounded-xl flex items-center justify-center gap-2"
             onClick={startExperience}
           >
             <Play fill="currentColor" size={16} />
-            Allow Playback
+            Start Music
           </button>
         </motion.div>
       </div>
@@ -225,7 +230,7 @@ export default function App() {
           <motion.div 
             className="absolute left-0 top-0 h-full bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"
             style={{ 
-              width: `${Math.max(0, Math.min(100, (currentTime / (audioRef.current?.duration || 242)) * 100))}%` 
+              width: `${Math.max(0, Math.min(100, ((currentTime - 148) / (197 - 148)) * 100))}%` 
             }}
           />
         </div>
