@@ -9,78 +9,15 @@ interface LyricLine {
 }
 
 const LYRICS: LyricLine[] = [
-  // Verse 1
-  { text: "Your man on the road, he doin' promo", start: 13.5, end: 17.0 },
-  { text: "You said, 'Keep our business on the low-low'", start: 17.0, end: 20.5 },
-  { text: "I'm just tryna get you out the friend zone", start: 20.5, end: 24.0 },
-  { text: "Cause you look even better than the photos", start: 24.0, end: 27.5 },
-  { text: "I can't find your house, send me the info", start: 27.5, end: 31.0 },
-  { text: "Drivin' through the gated residential", start: 31.0, end: 34.5 },
-  { text: "Found out I was comin', sent your friends home", start: 34.5, end: 38.0 },
-  { text: "Keep on tryna hide it but your friends know", start: 38.0, end: 41.5 },
-  
-  // Chorus 1
-  { text: "I only call you when it's half past five", start: 51.5, end: 56.5 },
-  { text: "The only time that I'd be by your side", start: 56.5, end: 61.5 },
-  { text: "I only love it when you touch me, not feel me", start: 61.5, end: 66.5 },
-  { text: "When I'm f-ed up, that's the real me", start: 66.5, end: 71.5 },
-  { text: "When I'm f-ed up, that's the real me, yeah", start: 71.5, end: 76.5 },
-  
-  { text: "I only call you when it's half past five", start: 76.5, end: 81.5 },
-  { text: "The only time I'd ever call you mine", start: 81.5, end: 86.5 },
-  { text: "I only love it when you touch me, not feel me", start: 86.5, end: 91.5 },
-  { text: "When I'm f-ed up, that's the real me", start: 91.5, end: 96.5 },
-  { text: "When I'm f-ed up, that's the real me, babe", start: 96.5, end: 101.5 },
-  
-  // Verse 2
-  { text: "I'ma let you know and keep it simple", start: 118.5, end: 122.0 },
-  { text: "Tryna keep it up don't seem so simple", start: 122.0, end: 125.5 },
-  { text: "I just f-ed two b- 'fore I saw you", start: 125.5, end: 129.0 },
-  { text: "And you gon' have to do it at my tempo", start: 129.0, end: 132.5 },
-  { text: "Always tryna send me off to rehab", start: 132.5, end: 136.0 },
-  { text: "D- started feelin' like it's decaf", start: 136.0, end: 139.5 },
-  { text: "I'm just tryna live life for the moment", start: 139.5, end: 143.0 },
-  { text: "And all these motherf- want a relapse", start: 143.0, end: 146.5 },
-  
-  // Chorus 2
-  { text: "I only call you when it's half past five", start: 156.5, end: 161.5 },
-  { text: "The only time that I'd be by your side", start: 161.5, end: 166.5 },
-  { text: "I only love it when you touch me, not feel me", start: 161.5, end: 171.5 },
-  { text: "When I'm f-ed up, that's the real me", start: 171.5, end: 176.5 },
-  { text: "When I'm f-ed up, that's the real me, yeah", start: 176.5, end: 181.5 },
-  
-  { text: "I only call you when it's half past five", start: 181.5, end: 186.5 },
-  { text: "The only time I'd ever call you mine", start: 186.5, end: 191.5 },
-  { text: "I only love it when you touch me, not feel me", start: 191.5, end: 196.5 },
-  { text: "When I'm f-ed up, that's the real me", start: 196.5, end: 201.5 },
-  { text: "When I'm f-ed up, that's the real me, babe", start: 201.5, end: 210.0 },
-  
-  // Bridge
-  { text: "Hills have eyes, the hills have eyes", start: 221.5, end: 226.5 },
-  { text: "Who are you to judge? Who are you to judge?", start: 226.5, end: 231.5 },
-  { text: "Hide your lies, girl, hide your lies", start: 231.5, end: 236.5 },
-  { text: "Only you to trust, only you", start: 236.5, end: 247.0 },
-  
-  // Chorus 3
-  { text: "I only call you when it's half past five", start: 247.0, end: 252.0 },
-  { text: "The only time that I'd be by your side", start: 252.0, end: 257.0 },
-  { text: "I only love it when you touch me, not feel me", start: 257.0, end: 262.0 },
-  { text: "When I'm f-ed up, that's the real me", start: 262.0, end: 267.0 },
-  { text: "When I'm f-ed up, that's the real me, yeah", start: 267.0, end: 272.0 },
-  
-  { text: "I only call you when it's half past five", start: 272.0, end: 277.0 },
-  { text: "The only time I'd ever call you mine", start: 277.0, end: 282.0 },
-  { text: "I only love it when you touch me, not feel me", start: 282.0, end: 287.0 },
-  { text: "When I'm f-ed up, that's the real me", start: 287.0, end: 292.0 },
-  { text: "When I'm f-ed up, that's the real me, babe", start: 292.0, end: 305.0 },
-  
-  // Outro
-  { text: "Ewedihalehu", start: 313.5, end: 317.0 },
-  { text: "Yene konjo, ewedihalehu", start: 317.0, end: 320.5 },
-  { text: "Yene fikir, fikir, fikir, fikir", start: 320.5, end: 324.0 },
-  { text: "Yene fikir, fikir, fikir, fikir", start: 324.0, end: 327.5 },
-  { text: "Ewedihalehu", start: 327.5, end: 331.0 },
-  { text: "Yene konjo, ewedihalehu", start: 331.0, end: 340.0 }
+  { text: "Hills have eyes, the hills have eyes", start: 147.0, end: 152.0 },
+  { text: "Who are you to judge? Who are you to judge?", start: 152.0, end: 157.0 },
+  { text: "Hide your lies, girl, hide your lies", start: 157.0, end: 162.0 },
+  { text: "Only you to trust, only you", start: 162.0, end: 167.0 },
+  { text: "I only call you when it's half past five", start: 167.0, end: 172.0 },
+  { text: "The only time that I'd be by your side", start: 172.0, end: 177.0 },
+  { text: "I only love it when you touch me, not feel me", start: 177.0, end: 182.0 },
+  { text: "When I'm f- up, that's the real me", start: 182.0, end: 187.0 },
+  { text: "When I'm f- up, that's the real me, yeah", start: 187.0, end: 192.0 }
 ];
 
 export default function App() {
@@ -92,6 +29,8 @@ export default function App() {
   const [lyricOffset, setLyricOffset] = useState(0);
   const [showSyncControls, setShowSyncControls] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
   // Audio source - Primary local asset
   const SONG_URL = "/assets/MUSIC.m4a";
@@ -131,14 +70,29 @@ export default function App() {
 
   const reset = () => {
     if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      setCurrentTime(0);
+      if (LYRICS.length > 0) {
+        audioRef.current.currentTime = LYRICS[0].start;
+        setCurrentTime(LYRICS[0].start);
+      } else {
+        audioRef.current.currentTime = 0;
+        setCurrentTime(0);
+      }
       if (!isPlaying) {
         audioRef.current.play();
         setIsPlaying(true);
       }
     }
   };
+
+  useEffect(() => {
+    if (activeLyricIndex !== -1 && scrollRef.current && itemRefs.current[activeLyricIndex]) {
+      const container = scrollRef.current;
+      const activeItem = itemRefs.current[activeLyricIndex]!;
+      
+      const scrollPos = activeItem.offsetTop - container.offsetHeight / 2 + activeItem.offsetHeight / 2;
+      container.scrollTo({ top: scrollPos, behavior: 'smooth' });
+    }
+  }, [activeLyricIndex]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -209,40 +163,46 @@ export default function App() {
       </motion.div>
 
       {/* Lyrics Display Area */}
-      <div className="z-10 h-[300px] flex flex-col items-center justify-center w-full max-w-3xl px-6 relative">
-        <AnimatePresence mode="wait">
-          {activeLyricIndex !== -1 ? (
-            <motion.div
-              key={activeLyricIndex}
-              initial={{ opacity: 0, y: 30, filter: 'blur(15px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -30, filter: 'blur(15px)' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center"
-            >
-              <h3 className="text-2xl md:text-4xl font-bold leading-tight tracking-tight text-white/90 drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] max-w-2xl mx-auto px-4">
-                {LYRICS[activeLyricIndex].text}
+      <div 
+        ref={scrollRef}
+        className="z-10 h-[50vh] flex flex-col w-full max-w-4xl px-4 overflow-y-auto no-scrollbar scroll-smooth relative"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <div className="py-[20vh] flex flex-col items-start gap-6 md:gap-8 min-h-full w-full">
+          {LYRICS.map((lyric, index) => {
+            const isActive = index === activeLyricIndex;
+            const isPast = index < activeLyricIndex;
+            
+            return (
+              <h3 
+                key={index}
+                // @ts-ignore
+                ref={el => itemRefs.current[index] = el}
+                onClick={() => {
+                  if (audioRef.current) {
+                    audioRef.current.currentTime = lyric.start;
+                    setCurrentTime(lyric.start);
+                    if (!isPlaying) togglePlay();
+                  }
+                }}
+                className={`text-2xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight transition-all duration-500 origin-left cursor-pointer w-full
+                  ${isActive 
+                    ? 'text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-100 opacity-100' 
+                    : 'text-white/30 scale-[0.98] hover:text-white/50 opacity-40'} 
+                  ${isPast ? 'blur-[1px]' : ''}
+                `}
+              >
+                {lyric.text}
               </h3>
-            </motion.div>
-          ) : (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-zinc-800 flex flex-col items-center gap-4"
-            >
-              <Music2 className="w-12 h-12 opacity-50" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Small Preview of Next Lyric */}
-        <div className="absolute bottom-4 opacity-10 pointer-events-none transition-opacity duration-500">
-          {activeLyricIndex + 1 < LYRICS.length && (
-            <p className="text-sm md:text-base font-medium italic">
-              {LYRICS[activeLyricIndex + 1].text}
-            </p>
-          )}
+            );
+          })}
         </div>
+
+        {activeLyricIndex === -1 && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-20 transition-opacity">
+            <Music2 className="w-16 h-16 mb-4" />
+          </div>
+        )}
       </div>
 
       {/* Controls Container */}
