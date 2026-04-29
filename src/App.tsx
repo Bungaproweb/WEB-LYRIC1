@@ -9,21 +9,20 @@ interface LyricLine {
 }
 
 const LYRICS: LyricLine[] = [
-  { text: "Hills have eyes, the hills have eyes", start: 147.0, end: 152.0 },
-  { text: "Who are you to judge? Who are you to judge?", start: 152.0, end: 157.0 },
-  { text: "Hide your lies, girl, hide your lies", start: 157.0, end: 162.0 },
-  { text: "Only you to trust, only you", start: 162.0, end: 167.0 },
-  { text: "I only call you when it's half past five", start: 167.0, end: 172.0 },
-  { text: "The only time that I'd be by your side", start: 172.0, end: 177.0 },
-  { text: "I only love it when you touch me, not feel me", start: 177.0, end: 182.0 },
-  { text: "When I'm f- up, that's the real me", start: 182.0, end: 187.0 },
-  { text: "When I'm f- up, that's the real me, yeah", start: 187.0, end: 192.0 }
+  { text: "Hills have eyes, the hills have eyes", start: 145.00, end: 156.70 },
+  { text: "Who are you to judge, who are you to judge?", start: 156.70, end: 167.00 },
+  { text: "Hide your lies, girl, hide your lies", start: 165.00, end: 174.00 },
+  { text: "Only you to trust, only you", start: 174.00, end: 181.10 },
+  { text: "I only call you when it's half past five", start: 180.15, end: 185.30 },
+  { text: "The only time that I'll be by your side", start: 185.30, end: 189.40 },
+  { text: "I only love it when you touch me, not feel me", start: 189.40, end: 192.80 },
+  { text: "When I'm ****** up, that's the real me", start: 192.80, end: 195.00 },
+  { text: "When I'm ****** up, that's the real me, yeah", start: 195.00, end: 197.00 }
 ];
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [activeLyricIndex, setActiveLyricIndex] = useState(-1);
+  const [currentTime, setCurrentTime] = useState(148);
   const [error, setError] = useState<string | null>(null);
   const [isStarted, setIsStarted] = useState(false);
   const [lyricOffset, setLyricOffset] = useState(0);
@@ -31,6 +30,12 @@ export default function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+
+  // Calculate active index dynamically so offset changes update immediately
+  const adjustedTime = currentTime + lyricOffset;
+  const activeLyricIndex = LYRICS.findIndex(
+    (l) => adjustedTime >= l.start && adjustedTime < l.end
+  );
 
   // Audio source - Primary local asset
   const SONG_URL = "/assets/MUSIC.m4a";
@@ -89,11 +94,13 @@ export default function App() {
       const scrollPos = activeItem.offsetTop - container.offsetHeight / 2 + activeItem.offsetHeight / 2;
       container.scrollTo({ top: scrollPos, behavior: 'smooth' });
     }
-  }, [activeLyricIndex]);
+  }, [activeLyricIndex, isStarted]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
+    let timeUpdateReq: number;
 
     const updateTime = () => {
       let time = audio.currentTime;
@@ -108,16 +115,17 @@ export default function App() {
 
       setCurrentTime(time);
 
-      const adjustedTime = time + lyricOffset;
-      const index = LYRICS.findIndex(
-        (l) => adjustedTime >= l.start && adjustedTime < l.end
-      );
-      setActiveLyricIndex(index);
+      if (isPlaying) {
+        timeUpdateReq = requestAnimationFrame(updateTime);
+      }
     };
 
-    audio.addEventListener('timeupdate', updateTime);
-    return () => audio.removeEventListener('timeupdate', updateTime);
-  }, [lyricOffset]);
+    if (isPlaying) {
+      timeUpdateReq = requestAnimationFrame(updateTime);
+    }
+
+    return () => cancelAnimationFrame(timeUpdateReq);
+  }, [isPlaying]);
 
   if (!isStarted) {
     return (
@@ -199,12 +207,14 @@ export default function App() {
                     if (!isPlaying) togglePlay();
                   }
                 }}
-                className={`text-2xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight transition-all duration-500 origin-left cursor-pointer w-full
+                className={`text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tighter transition-all duration-700 cursor-pointer w-full
                   ${isActive 
-                    ? 'text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] scale-100 opacity-100' 
-                    : 'text-white/30 scale-[0.98] hover:text-white/50 opacity-40'} 
-                  ${isPast ? 'blur-[1px]' : ''}
+                    ? 'text-white opacity-100' 
+                    : 'text-white/30 hover:text-white/50 opacity-40'} 
                 `}
+                style={{
+                  transformOrigin: 'left center'
+                }}
               >
                 {lyric.text}
               </h3>
